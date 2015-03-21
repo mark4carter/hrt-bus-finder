@@ -7,19 +7,13 @@ $(function(){
   // moved Arrival model to models/arrival.js
 
   // moved Stop to models/stop.js
+  
+  // moved API_URl to models/apiurl.js
+    var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
 
-	var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
-	var ArrivalList = Backbone.Collection.extend({
-		model: app.Arrival,   //changed Arrival to app.Arrival
+  // moved ArrivalList to collections/arrivalList.js
 
-		comparator: function(arrival) {
-		    return arrival.minutesFromNow();
-        },
 
-		url: function() {
-			return API_URL + 'stop_times/' + this.stopId + '/';
-		}
-	});
 
 	var StopList = Backbone.Collection.extend({
 		url: function() {
@@ -48,19 +42,7 @@ $(function(){
 	});
 
 
-	var BusList = Backbone.Collection.extend({
-	    initialize: function(models, options) {
-	        this.routeIds = options.routeIds;
-	    },
-
-		url: function() {
-		    var url = API_URL + 'buses/routes';
-		    if(this.routeIds) {
-		        url += '/' + this.routeIds + '/';
-	        }
-			return url;
-		}
-	});
+	//Moved buslist to collections/buslist.js
 
 	var ActiveRoutesList = Backbone.Collection.extend({
 		url: API_URL + 'routes/active/'
@@ -87,7 +69,7 @@ $(function(){
 		template: _.template($('#stop-template').html()),
 
 		initialize: function() {
-			this.collection = new ArrivalList;
+			this.collection = new app.ArrivalList;
 			this.collection.stopId = this.model.get('stopId');
 			this.collection.on('add', this.addArrival, this);
 			this.collection.on('sort', this.checkOrder, this);
@@ -532,7 +514,7 @@ $(function(){
 	    initialize: function() {
 	        this.firstUpdate = true;
 
-			this.collection = new BusList({}, {routeIds: this.options.routeIds});
+			this.collection = new app.BusList({}, {routeIds: this.options.routeIds});
 			this.collection.on('reset', this.addBuses, this);
 
 			this.activeRoutesList = new ActiveRoutesList();
@@ -612,7 +594,7 @@ $(function(){
 		},
 
 	    initialize: function() {
-	        this.collection = new Backbone.Collection([], {model: Stop});
+	        this.collection = new Backbone.Collection([], {model: app.Stop});
 	        this.collection.on('add', this.addStop, this);
 	        this.collection.once('sync', function() {App.MapView.setBounds();}, this);
 

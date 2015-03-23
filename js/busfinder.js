@@ -9,6 +9,11 @@ $(function(){
   // moved Stop to models/stop.js
   
   // moved API_URl to models/apiurl.js
+  /////////
+  // Browser kept trying to use file:// when I changed to app.API_URL
+  // so for now I had to make separate var API_URL for
+  // busfinder.js, arrivalList.js, busList.js, and stopList.js
+  ////////
     var API_URL = 'http://lit-inlet-3610.herokuapp.com/api/'
 
   // moved ArrivalList to collections/arrivalList.js

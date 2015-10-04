@@ -54,7 +54,7 @@ ul, ol, dd {
 
 .navbar-inner {
 	background-image: none !important;
-	background: #602749 !important;
+	background: #82A6BA !important;
 	border-bottom: none;
 	min-height: 52px;
 	filter: none;
@@ -178,7 +178,7 @@ h1 {
 }
 
 .head-label {
-	background-color: #3E1C33;
+	background-color: #82a6ba;
 	color: white;
 	padding: 0px 5px;
 	position: relative;
@@ -229,7 +229,7 @@ h1 {
 }
 
 .stop-name {
-	background-color: #602749;
+	background-color: #a7bfcc;
 	padding: 1em;
 	text-align: center;
 	letter-spacing: 1px;
